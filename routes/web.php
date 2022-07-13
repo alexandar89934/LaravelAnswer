@@ -22,3 +22,5 @@ Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->na
 Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 
 Route::post('/contact',  [\App\Http\Controllers\PageController::class, 'submitContact']);
+
+Route::resource('questions', \App\Http\Controllers\QuestionController::class );
