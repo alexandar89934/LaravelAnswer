@@ -7,8 +7,8 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-       <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">  
-       <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+       <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"> --> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
       
     </head>
     <body>

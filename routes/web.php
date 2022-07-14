@@ -27,3 +27,8 @@ Route::resource('questions', \App\Http\Controllers\QuestionController::class );
 
 Route::resource('answers', \App\Http\Controllers\AnswersController::class, ['except' => ['index', 'create', 'show']]);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
