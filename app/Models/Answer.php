@@ -13,4 +13,8 @@ class Answer extends Model
         return $this->belongsTo('App\Models\Question');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

@@ -7,6 +7,10 @@
         <p class="lead">
             {{ $question->description }}
         </p>
+        <p>
+            Submited By: {{ $question->user->name }}, {{ $question->created_at->diffForHumans() }}
+        </p> 
+
         <hr>
 
         <!-- display all of the answers for this question -->
@@ -17,6 +21,7 @@
                 <p>
                     {{ $answer->content }}
                 </p>
+                <h6>Answered By: {{$answer->user->name}},  {{ $question->created_at->diffForHumans() }}</h6>
             </div>
            </div>
         @endforeach

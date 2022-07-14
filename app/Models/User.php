@@ -32,6 +32,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Question');
+    }
+    public function answers(){
+        return $this->hasMany('App\Models\Answer');
+    }
+
 
     /**
      * The attributes that should be cast.
