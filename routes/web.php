@@ -24,3 +24,6 @@ Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])
 Route::post('/contact',  [\App\Http\Controllers\PageController::class, 'submitContact']);
 
 Route::resource('questions', \App\Http\Controllers\QuestionController::class );
+
+Route::resource('answers', \App\Http\Controllers\AnswersController::class, ['except' => ['index', 'create', 'show']]);
+
