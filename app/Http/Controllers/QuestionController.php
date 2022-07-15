@@ -97,7 +97,7 @@ class QuestionController extends Controller
        if ($question->user->id != Auth::id()) {
         return abort(403);
        }
-       return view('question.edit');
+       return view('questions.edit')->with('question', $question);
     }
 
     /**
@@ -109,12 +109,20 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
         $question = Question::findOrFail($id);
-       if ($question->user->id != Auth::id()) {
-        return abort(403);
-       }
+        // Getting values from the blade template form
+        $this->validate($request, [
+            'title' => 'required|max:255'
+        ]);
 
-       //update question
+
+        $question->title =  $request->get('title');
+        $question->description = $request->get('description');
+       
+        $question->save();
+ 
+        return redirect()->route('questions.show', $question->id);
     }
 
     /**
@@ -125,6 +133,9 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::find($id);
+        $question->delete(); 
+ 
+        return redirect()->route('questions.index');
     }
 }

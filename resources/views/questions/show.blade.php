@@ -10,7 +10,19 @@
         <p>
             Submited By: {{ $question->user->name }}, {{ $question->created_at->diffForHumans() }}
         </p> 
-
+        @if (Auth::id())
+        <div class="btn-group btn-group-sm">
+            <form action="{{ route('questions.edit', $question->id ) }}" method="GET">
+                @csrf
+                <button class="btn btn-primary" type="submit">Edit</button>
+            </form>
+            <form action="{{ route('questions.destroy', $question->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+        </div>
+        @endif
         <hr>
 
         <!-- display all of the answers for this question -->
@@ -24,6 +36,21 @@
                 <h6>Answered By: {{$answer->user->name}},  {{ $question->created_at->diffForHumans() }}</h6>
             </div>
            </div>
+           @if (Auth::id())
+        <div class="btn-group btn-group-sm">
+            <form action="{{ route('answers.edit', $answer->id ) }}" method="GET">
+                @csrf
+                <button class="btn btn-primary" type="submit">Edit</button>
+            </form>
+            <form action="{{ route('answers.destroy', $answer->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+        </div>
+        @endif
+
+
         @endforeach
         @else
             <p>There are no answers to this question yet.</p>

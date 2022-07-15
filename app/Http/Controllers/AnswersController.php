@@ -50,7 +50,11 @@ class AnswersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        if ($answer->user->id != Auth::id()) {
+         return abort(403);
+        }
+        return view('answers.edit')->with('answer', $answer);
     }
 
     /**
@@ -62,7 +66,19 @@ class AnswersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        // Getting values from the blade template form
+        $this->validate($request, [
+            'content' => 'required|max:255'
+        ]);
+
+
+        $answer->content =  $request->get('content');
+       
+       
+        $answer->save();
+ 
+        return redirect()->route('questions.index');
     }
 
     /**
@@ -73,6 +89,9 @@ class AnswersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $answer = Answer::find($id);
+        $answer->delete(); 
+ 
+        return redirect()->route('questions.index');
     }
 }

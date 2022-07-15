@@ -17,13 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+Route::resource('questions', \App\Http\Controllers\QuestionController::class );
+
+
 Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->name('about');
 
 Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 
 Route::post('/contact',  [\App\Http\Controllers\PageController::class, 'submitContact']);
 
-Route::resource('questions', \App\Http\Controllers\QuestionController::class );
 
 Route::resource('answers', \App\Http\Controllers\AnswersController::class, ['except' => ['index', 'create', 'show']]);
 
