@@ -37,16 +37,20 @@
             </div>
            </div>
            @if (Auth::id())
-        <div class="btn-group btn-group-sm">
+        <div class="row">
+            <div class="col-md-3">
             <form action="{{ route('answers.edit', $answer->id ) }}" method="GET">
                 @csrf
                 <button class="btn btn-primary" type="submit">Edit</button>
             </form>
+            </div>
+            <div class="col-md-9">
             <form action="{{ route('answers.destroy', $answer->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
+                </div>
         </div>
         @endif
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 class PageController extends Controller
 {
@@ -17,5 +18,11 @@ class PageController extends Controller
     public function submitContact()
     {
         return "Submited Contact";
+    }
+    public function profile($id)
+    {
+
+        $user = User::with(['questions', 'answers', 'answers.question'])->findOrFail($id);
+        return view('profile')->with('user', $user);
     }
 }

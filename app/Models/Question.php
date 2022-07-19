@@ -10,12 +10,12 @@ class Question extends Model
     use HasFactory;
     
     public function answers(){
-        return $this->hasMany('App\Models\Answer');
+        return $this->hasMany('App\Models\Answer', 'user_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
 }
