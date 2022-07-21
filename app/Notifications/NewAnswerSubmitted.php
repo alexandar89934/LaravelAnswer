@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\SlackMessage;
+use GuzzleHttp\RequestOptions;
 
 class NewAnswerSubmitted extends Notification
 {
@@ -35,7 +37,7 @@ class NewAnswerSubmitted extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'slack'];
     }
 
     /**
@@ -51,6 +53,24 @@ class NewAnswerSubmitted extends Notification
                     ->line("$this->name just suggested: ". $this->answer->content)
                     ->action('View All Answers', route('questions.show', $this->question->id))
                     ->line('Thank you for using LaravelAnswers!');
+    }
+
+    public function toSlack($notifiable)
+    {
+        $url = route('questions.show', $this->question->id);
+        return (new SlackMessage)
+        ->from('Laravel Answers Bot', ':robot_face:')
+        ->to('#random')
+        ->content("$this->name just submitted an answer to your question! Check it out now at LaravelAnswers.")
+        ->attachment(function ($attachment) use ($url) {
+                $attachment->title($this->question->title, $url)
+                           ->fields([
+                            'Question title' => $this->question->title,
+                            'Submitter\'s Name' => $this->name,
+                            'Answer' => $this->answer->content,
+                            'Validated User' => ':+1:'
+                           ]);
+        });
     }
 
     /**
