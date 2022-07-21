@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-<img src="{{ asset('storage/'.$user->profile_pic) }}" alt="no pic" class="img-rounded pull-right" style="max-height:100px;">
+<!-- <img src="{{ asset('storage/'.$user->profile_pic) }}" alt="no pic" class="img-rounded pull-right" style="max-height:100px;"> -->
+<img src="{{ $user->profile_pic }}" alt="no pic" class="img-rounded pull-right" style="max-height:100px;">
 <h1>{{ $user->name }}'s Profile</h1>
 <p>
     See what {{ $user->name }} has been up to on LaravelAnswers.
