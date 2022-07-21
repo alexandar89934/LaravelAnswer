@@ -35,3 +35,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/profile/{user}', [\App\Http\Controllers\PageController::class, 'profile' ])->name('profile');
+
+Route::get('/upload', [App\Http\Controllers\UploadController::class, 'getUpload'])->name('upload');
+
+Route::post('/upload', [App\Http\Controllers\UploadController::class, 'postUpload']);
