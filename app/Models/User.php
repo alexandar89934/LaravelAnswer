@@ -31,6 +31,8 @@ class User extends Authenticatable
         'user_id'
     ];
 
+    protected $appends = array('thumbnail');
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -48,6 +50,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Answer');
     }
 
+    public function getThumbnailAttribute()
+    {
+        $path = pathinfo($this->profile_pic);
+        return $path['dirname'].'/'.$path['filename']."-thumb.jpg";
+    }
 
     /**
      * The attributes that should be cast.
