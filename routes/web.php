@@ -39,3 +39,11 @@ Route::get('/profile/{user}', [\App\Http\Controllers\PageController::class, 'pro
 Route::get('/upload', [App\Http\Controllers\UploadController::class, 'getUpload'])->name('upload');
 
 Route::post('/upload', [App\Http\Controllers\UploadController::class, 'postUpload']);
+
+Route::get('/github/{username}',  [\App\Http\Controllers\ApiController::class, 'github' ])->name('github');
+
+Route::get('/weather', [App\Http\Controllers\ApiController::class, 'getWeather'])->name('weather');
+
+Route::post('/weather', [App\Http\Controllers\ApiController::class, 'postWeather']);
+
+Route::get('/weather/js', [App\Http\Controllers\ApiController::class, 'getWeatherJs'])->name('weather.js');

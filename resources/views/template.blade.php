@@ -12,7 +12,7 @@
         <!-- Fonts -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-      
+       
       
     </head>
     <body>
@@ -20,6 +20,7 @@
         
           
        @yield('content')
+       @yield('scripts')
 
         </body>
 </html>
